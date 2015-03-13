@@ -2,53 +2,50 @@ extends layout
 
 block content
     h1= title
-    p Welcome to our test
+    p Welcome to our lyric database
 
     // Wrapper
     #wrapper
 
-        // USER INFO
+        // Lyric INFO
         #userInfo
-            h2 User Info
+            h2 Lyric Info
             p
+                strong Artist:
+                |  <span id='songArtist'></span>
+                br
                 strong Name:
-                |  <span id='userInfoName'></span>
+                |  <span id='songName'></span>
                 br
-                strong Age:
-                |  <span id='userInfoAge'></span>
+                strong Lyrics:
+                |  <span id='songLyrics'></span>
                 br
-                strong Gender:
-                |  <span id='userInfoGender'></span>
-                br
-                strong Location:
-                |  <span id='userInfoLocation'></span>
+                strong URL:
+                |  <span id='songURL'></span>
         // /USER INFO
 
         // USER LIST
-        h2 User List
-        #userList
+        h2 Songs List
+        #songList
             table
                 thead
-                    th UserName
-                    th Email
+                    th Artist
+                    th Name
                     th Delete?
                 tbody
-        // /USER LIST
+        // /Lyric LIST
 
-        // ADD USER
-        h2 Add User
-        #addUser
+        // ADD Lyric
+        h2 Add Lyric
+        #addLyrics
             fieldset
-                input#inputUserName(type='text', placeholder='Username')
-                input#inputUserEmail(type='text', placeholder='Email')
+                input#inputSongArtist(type='text', placeholder='Artist')
+                input#inputSongName(type='text', placeholder='Song Name')
                 br
-                input#inputUserFullname(type='text', placeholder='Full Name')
-                input#inputUserAge(type='text', placeholder='Age')
-                br
-                input#inputUserLocation(type='text', placeholder='Location')
-                input#inputUserGender(type='text', placeholder='gender')
-                br
-                button#btnAddUser Add User
+                input#inputSongLyrics(type='text', placeholder='Lyrics')
+                input#inputSongURL(type='text', placeholder='URL')
+
+                button#btnAddSong Add Song
         // /ADD USER
 
     // /WRAPPER

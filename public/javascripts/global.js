@@ -1,5 +1,5 @@
-// Userlist data array for filling in info box
-var userListData = [];
+// SongList data array for filling in info box
+var songListData = [];
 
 // DOM Ready =============================================================
 $(document).ready(function() {
@@ -8,13 +8,13 @@ $(document).ready(function() {
     populateTable();
 
     // Username link click
-    $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
+    $('#songList table tbody').on('click', 'td a.linkshowsong', showSongInfo);
 
     // Add User button click
-    $('#btnAddUser').on('click', addUser);
+    $('#btnAddSong').on('click', addUser);
 
     // Delete User link click
-    $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
+    $('#songList table tbody').on('click', 'td a.linkdeletesong', deleteSong);
 
 });
 
@@ -27,40 +27,40 @@ function populateTable() {
     var tableContent = '';
 
     // jQuery AJAX call for JSON
-    $.getJSON( '/users/userlist', function( data ) {
+    $.getJSON( '/users/songlist', function( data ) {
 
         // Stick our user data array into a userlist variable in the global object
-        userListData = data;
+        songListData = data;
 
         // For each item in our JSON, add a table row and cells to the content string
         $.each(data, function(){
             tableContent += '<tr>';
-            tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.username + '" title="Show Details">' + this.username + '</a></td>';
+            tableContent += '<td><a href="#" class="linkshowsong" rel="' + this.username + '" title="Show Details">' + this.songname + '</a></td>';
             tableContent += '<td>' + this.email + '</td>';
-            tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>';
+            tableContent += '<td><a href="#" class="linkdeletesong" rel="' + this._id + '">delete</a></td>';
             tableContent += '</tr>';
         });
 
         // Inject the whole content string into our existing HTML table
-        $('#userList table tbody').html(tableContent);
+        $('#songList table tbody').html(tableContent);
     });
 };
 
 // Show User Info
-function showUserInfo(event) {
+function showSongInfo(event) {
 
     // Prevent Link from Firing
     event.preventDefault();
 
-    // Retrieve username from link rel attribute
-    var thisUserName = $(this).attr('rel');
+    // Retrieve songName from link rel attribute
+    var thisSongName = $(this).attr('rel');
 
     // Get Index of object based on id value
-    var arrayPosition = userListData.map(function(arrayItem) { return arrayItem.username; }).indexOf(thisUserName);
+    var arrayPosition = songListData.map(function(arrayItem) { return arrayItem.songname; }).indexOf(thisSongName);
 
     // Get our User Object
-    var thisUserObject = userListData[arrayPosition];
-
+    var thisSongObject = songListData[arrayPosition];
+//.................I GOT THIS FAR................................
     //Populate Info Box
     $('#userInfoName').text(thisUserObject.fullname);
     $('#userInfoAge').text(thisUserObject.age);
